@@ -21,8 +21,8 @@ public class PersonResource {
 
     @GET
     @Path("/{id}")
-    public Person get(String id) {
-        return Person.findById(new ObjectId(id));
+    public Person get(@PathParam("id") String id) {
+        return Person.findById(id);
     }
 
     @POST
