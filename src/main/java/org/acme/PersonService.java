@@ -32,22 +32,30 @@ public class PersonService implements PeopleService {
 
     @Override
     public Uni<PersonIdResponse> createPerson(PersonRequest request) {
-        return null;
+        return Uni.createFrom().item(() ->
+                PersonIdResponse.newBuilder().build()
+        );
     }
 
     @Override
     public Uni<org.acme.entity.grpc.Empty> updatePerson(UpdatePersonRequest request) {
-        return null;
+        return Uni.createFrom().item(() ->
+                org.acme.entity.grpc.Empty.newBuilder().build()
+        );
     }
 
     @Override
     public Uni<org.acme.entity.grpc.Empty> deletePerson(PersonIdRequest request) {
-        return null;
+        return Uni.createFrom().item(() ->
+                org.acme.entity.grpc.Empty.newBuilder().build()
+        );
     }
 
     @Override
     public Uni<PersonResponse> searchPerson(SearchRequest request) {
-        return null;
+        return Uni.createFrom().item(() ->
+                PersonResponse.newBuilder().build()
+        );
     }
 
     @Override
