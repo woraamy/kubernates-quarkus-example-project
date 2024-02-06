@@ -6,7 +6,7 @@ option java_outer_classname = "PersonServiceProto";
 
 package person;
 
-service PersonService {
+service PeopleService {
   rpc ListPersons (Empty) returns (PersonList);
   rpc GetPerson (PersonIdRequest) returns (PersonResponse);
   rpc CreatePerson (PersonRequest) returns (PersonIdResponse);
