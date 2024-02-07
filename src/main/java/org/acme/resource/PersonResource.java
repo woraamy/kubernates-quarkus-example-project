@@ -1,5 +1,6 @@
 package org.acme.resource;
 
+import io.quarkus.mongodb.panache.PanacheMongoEntityBase;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -34,13 +35,17 @@ public class PersonResource {
     @PUT
     @Path("/{id}")
     public void update(String id, Person person) {
-        person.update();
+        Person old = Person.findById(id);
+        old.birth = person.birth;
+        old.name = person.name;
+        old.age = person.age;
+        old.update();
     }
 
     @DELETE
     @Path("/{id}")
     public void delete(String id) {
-        Person person = Person.findById(new ObjectId(id));
+        Person person = Person.findById(id);
         if(person == null) {
             throw new NotFoundException();
         }

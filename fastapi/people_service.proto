@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.acme.entity.grpc";
+option java_outer_classname = "PersonServiceProto";
+
+package person;
+
+service PeopleService {
+  rpc ListPersons (Empty) returns (PersonList);
+  rpc GetPerson (PersonIdRequest) returns (PersonResponse);
+  rpc CreatePerson (PersonRequest) returns (PersonIdResponse);
+  rpc UpdatePerson (UpdatePersonRequest) returns (Empty);
+  rpc DeletePerson (PersonIdRequest) returns (Empty);
+  rpc SearchPerson (SearchRequest) returns (PersonResponse);
+  rpc CountPersons (Empty) returns (CountResponse);
+}
+
+message Empty {}
+
+message PersonIdRequest {
+  string id = 1;
+}
+
+message PersonRequest {
+  string name = 1;
+  string birth = 2;
+  string status = 3;
+  int32 age = 4;
+}
+
+message UpdatePersonRequest {
+  string id = 1;
+  PersonRequest person = 2;
+}
+
+message PersonIdResponse {
+  string id = 1;
+}
+
+message PersonList {
+  repeated PersonResponse persons = 1;
+}
+
+message PersonResponse {
+  string id = 1;
+  string name = 2;
+  string birth = 3;
+  string status = 4;
+  int32 age = 5;
+}
+
+message SearchRequest {
+  string name = 1;
+}
+
+message CountResponse {
+  int64 count = 1;
+}

@@ -7,11 +7,7 @@ import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.types.ObjectId;
 
 import java.time.LocalDate;
-import java.util.List;
 
-//import static io.quarkus.credentials.runtime.CredentialsProviderFinder.find;
-
-//import static jakarta.el.FactoryFinder.find;
 
 
 @MongoEntity(collection="ThePerson")
