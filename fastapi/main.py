@@ -16,9 +16,9 @@ def read_root():
     return {"Hello": "World"}
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: str):
-    return test(item_id)
+@app.get("/person/{person_id}")
+def read_item(person_id: str):
+    return test(person_id)
 
 
 def test(id):

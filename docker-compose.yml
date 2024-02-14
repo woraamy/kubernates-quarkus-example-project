@@ -23,10 +23,19 @@ services:
     environment:
       QUARKUS_MONGODB_USERNAME: root
       QUARKUS_MONGODB_PASSWORD: example
+      QUARKUS_MONGODB_CONNECTION_STRING: mongodb://root:example@mongo:27017
 
-#  fastapi:
-#    build:
-#      context:
+  fastapi:
+    build:
+      context: ./fastapi
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+    environment:
+      DATABASE_URL: mongodb://root:example@mongo:27017/quarkus-database
+    depends_on:
+      - mongo
+
 
   mongo-express:
     image: mongo-express
