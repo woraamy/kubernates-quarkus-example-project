@@ -7,10 +7,11 @@ services:
     image: mongo
     restart: always
     ports:
-      - 27017:27017
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+      - "27017:27017"
+#    environment:
+#      MONGO_INITDB_DATABASE: quarkus-database
+#      MONGO_INITDB_ROOT_USERNAME: root
+#      MONGO_INITDB_ROOT_PASSWORD: example
     volumes:
       - mongo:/data/db
 
@@ -19,11 +20,12 @@ services:
       context: .
       dockerfile: src/main/docker/Dockerfile.jvm
     ports:
-      - 8080:8080
+      - "8080:8080"
     environment:
-      QUARKUS_MONGODB_USERNAME: root
-      QUARKUS_MONGODB_PASSWORD: example
-      QUARKUS_MONGODB_CONNECTION_STRING: mongodb://root:example@mongo:27017
+      QUARKUS_MONGODB_HOSTS: mongo:27017
+#      QUARKUS_MONGODB_USERNAME: root
+#      QUARKUS_MONGODB_PASSWORD: example
+#      QUARKUS_MONGODB_CONNECTION_STRING: mongodb://root:example@mongo:27017/quarkus-database?authSource=admin
 
   fastapi:
     build:
@@ -32,6 +34,7 @@ services:
     ports:
       - 5000:5000
     environment:
+      PERSON_SERVICE_URL: http://quarkus:8080
       DATABASE_URL: mongodb://root:example@mongo:27017/quarkus-database
     depends_on:
       - mongo
