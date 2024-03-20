@@ -27,7 +27,8 @@ spec:
               value: mongodb://root:example@mongo:27017/quarkus-database
             - name: PERSON_SERVICE_URL
               value: http://quarkus:8080
-          image: fastapi
+          image: ghcr.io/woraamy/kubernates-quarkus-example-project/fastapi
+          imagePullPolicy: IfNotPresent
           name: fastapi
           ports:
             - containerPort: 5000

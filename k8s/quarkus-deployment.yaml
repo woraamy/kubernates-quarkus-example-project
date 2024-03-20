@@ -25,7 +25,8 @@ spec:
         - env:
             - name: QUARKUS_MONGODB_HOSTS
               value: mongo:27017
-          image: quarkus
+          image: ghcr.io/woraamy/kubernates-quarkus-example-project/quarkus
+          imagePullPolicy: IfNotPresent
           name: quarkus
           ports:
             - containerPort: 8080
