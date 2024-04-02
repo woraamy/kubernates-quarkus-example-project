@@ -7,6 +7,7 @@ from fastapi import FastAPI
 from fastapi import Response
 import people_service_pb2
 import people_service_pb2_grpc
+from config import GRPC_HOST, GRPC_PORT, RUNNING_HOST, RUNNING_PORT
 
 app = FastAPI()
 
@@ -22,13 +23,12 @@ def read_item(person_id: str):
 
 
 def test(id):
-    with grpc.insecure_channel("localhost:9000") as channel:  # Connect to the gRPC server
+    with grpc.insecure_channel(f"{GRPC_HOST}:{GRPC_PORT}") as channel:  # Connect to the gRPC server
         stub = people_service_pb2_grpc.PeopleServiceStub(channel)
         request = people_service_pb2.PersonIdRequest(id=id)
         response = stub.GetPerson(request)
-        # print(response)
         return MessageToDict(response)
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=5000)
+    uvicorn.run(app, host=RUNNING_HOST, port=RUNNING_PORT)

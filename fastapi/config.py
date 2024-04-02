@@ -1,0 +1,4 @@
+GRPC_HOST = "localhost"
+GRPC_PORT = "9000"
+RUNNING_HOST = "0.0.0.0"
+RUNNING_PORT = 5000

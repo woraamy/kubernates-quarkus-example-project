@@ -24,7 +24,8 @@ spec:
         io.kompose.service: mongo
     spec:
       containers:
-        - image: mongo
+        - image: ghcr.io/woraamy/kubernates-quarkus-example-project/mongodb
+          imagePullPolicy: IfNotPresent
           name: mongo
           ports:
             - containerPort: 27017
