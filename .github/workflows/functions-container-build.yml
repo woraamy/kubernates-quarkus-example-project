@@ -67,4 +67,4 @@ jobs:
 
       - name: Build and push container image (platforms)
         if: env.CONTAINER_PUSH
-        run: mvn -B -DskipTests package --file pom.xml -Dquarkus.container-image.image=ghcr.io/${{ github.repository }}/quarkus${{TAG}} -Dquarkus.container-image.username=${{ github.actor }} -Dquarkus.container-image.password=${{ secrets.GITHUB_TOKEN }} -Dquarkus.container-image.build=true -Dquarkus.container-image.push=true
+        run: mvn -B -DskipTests package --file pom.xml -Dquarkus.container-image.image=ghcr.io/${{ github.repository }}/quarkus$TAG -Dquarkus.container-image.username=${{ github.actor }} -Dquarkus.container-image.password=${{ secrets.GITHUB_TOKEN }} -Dquarkus.container-image.build=true -Dquarkus.container-image.push=true
